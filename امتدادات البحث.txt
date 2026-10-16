@@ -1,0 +1,11 @@
+*.pdf
+
+*.doc
+
+*.ppt 
+
+*.txt 
+
+kind:pictures
+
+*.zip
