@@ -55,7 +55,20 @@
     "objects": {
       "referenceLabel": [
         {
-          "properties": {},
+          "properties": {
+            "value": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Exports CAGR Label"
+                }
+              }
+            }
+          },
           "selector": {
             "data": [
               {
@@ -65,22 +78,7 @@
               }
             ],
             "metadata": "Measures_Table.Exports CAGR 2021-2025",
-            "id": "field-e6027705-82e1-75a4-7430-1f0477ada602",
-            "order": 0
-          }
-        },
-        {
-          "properties": {},
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ],
-            "metadata": "Measures_Table.Exports CAGR 2021-2025",
-            "id": "field-6e8b4b6a-3885-bc85-4fc1-8fbc794caf55",
+            "id": "field-96c11c4d-b050-45fc-bc9b-6cee672495a0",
             "order": 0
           }
         }

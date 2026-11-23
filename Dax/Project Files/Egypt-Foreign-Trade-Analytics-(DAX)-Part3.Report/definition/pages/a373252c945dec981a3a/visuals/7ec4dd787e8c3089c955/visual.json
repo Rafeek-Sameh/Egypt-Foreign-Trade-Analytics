@@ -55,21 +55,6 @@
     "objects": {
       "referenceLabel": [
         {
-          "properties": {},
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 0
-                }
-              }
-            ],
-            "metadata": "Measures_Table.Imports CAGR 2021-2025",
-            "id": "field-09479a51-a593-7917-41c3-a9b5d64d6573",
-            "order": 0
-          }
-        },
-        {
           "properties": {
             "value": {
               "expr": {
@@ -79,7 +64,7 @@
                       "Entity": "Measures_Table"
                     }
                   },
-                  "Property": "Growth Gap :"
+                  "Property": "Imports CAGR Label"
                 }
               }
             }
@@ -93,7 +78,7 @@
               }
             ],
             "metadata": "Measures_Table.Imports CAGR 2021-2025",
-            "id": "field-86baf511-609c-f1f4-ecd6-a731352c4e1c",
+            "id": "field-571aaea8-1045-48d2-82af-7760718760dd",
             "order": 0
           }
         }

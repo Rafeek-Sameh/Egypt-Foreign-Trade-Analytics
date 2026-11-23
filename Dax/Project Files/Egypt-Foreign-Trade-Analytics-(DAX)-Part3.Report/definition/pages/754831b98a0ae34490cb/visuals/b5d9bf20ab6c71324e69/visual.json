@@ -53,5 +53,6 @@
       }
     },
     "drillFilterOtherVisuals": true
-  }
+  },
+  "isHidden": true
 }

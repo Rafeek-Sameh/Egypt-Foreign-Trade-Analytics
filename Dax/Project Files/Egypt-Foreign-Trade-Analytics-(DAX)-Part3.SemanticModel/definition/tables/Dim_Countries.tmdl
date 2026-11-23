@@ -43,6 +43,15 @@ table Dim_Countries
 
 		annotation SummarizationSetBy = User
 
+	column 'Import Partner Group' =
+			VAR _rank = RANKX(ALL(Dim_Countries), CALCULATE([Total Imports USD]), , DESC, DENSE)
+			RETURN IF(_rank <= 10, Dim_Countries[Partner Country], "Others")
+		dataType: string
+		lineageTag: e19f862a-e03c-4b9b-8c60-80ed3354b2aa
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Dim_Countries = m
 		mode: import
 		source =

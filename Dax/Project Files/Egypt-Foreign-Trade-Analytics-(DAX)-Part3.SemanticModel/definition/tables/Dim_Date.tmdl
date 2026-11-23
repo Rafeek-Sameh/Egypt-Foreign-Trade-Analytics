@@ -55,6 +55,7 @@ table Dim_Date
 
 	column 'Month Name'
 		dataType: string
+		isHidden
 		lineageTag: ee3c3ac9-db5a-48aa-a15e-d848ab755c7d
 		summarizeBy: none
 		sourceColumn: Month_Name

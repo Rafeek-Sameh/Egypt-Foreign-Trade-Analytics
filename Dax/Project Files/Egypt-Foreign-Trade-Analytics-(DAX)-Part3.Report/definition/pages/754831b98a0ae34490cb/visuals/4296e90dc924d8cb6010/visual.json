@@ -39,6 +39,38 @@
         }
       }
     },
-    "drillFilterOtherVisuals": true
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "referenceLabel": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Golden Card Label"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Min(Dim_Industrial_Opportunity.Golden License Eligible)",
+            "id": "field-39abfb34-4b3a-42a8-a394-13189f19bef6",
+            "order": 0
+          }
+        }
+      ]
+    }
   }
 }

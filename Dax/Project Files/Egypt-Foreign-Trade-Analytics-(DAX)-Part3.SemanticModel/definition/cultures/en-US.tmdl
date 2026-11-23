@@ -6237,7 +6237,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Export Coverage Ratio": {
+			          "Export Coverage": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -9505,7 +9505,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Estimated Tariff Revenue": {
+			          "Tariff Revenue (est.)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -9777,7 +9777,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Strategic Imports Share": {
+			          "Strategic Share": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -12833,7 +12833,7 @@ cultureInfo en-US
 			          }
 			        },
 			        {
-			          "Standard WTO Imports": {
+			          "WTO-Terms Share": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -12854,7 +12854,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "EU Partnership Imports": {
+			          "EU Share of Imports": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -12896,7 +12896,7 @@ cultureInfo en-US
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Golden License Savings": {
+			          "Golden License Share": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

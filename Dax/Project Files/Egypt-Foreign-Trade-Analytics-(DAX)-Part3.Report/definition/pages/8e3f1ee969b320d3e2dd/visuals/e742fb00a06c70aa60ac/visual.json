@@ -28,7 +28,7 @@
               },
               "queryRef": "Measures_Table.Estimated Tariff Revenue USD",
               "nativeQueryRef": "Estimated Tariff Revenue USD",
-              "displayName": "Estimated Tariff Revenue"
+              "displayName": "Tariff Revenue (est.)"
             }
           ]
         }
@@ -74,6 +74,36 @@
           },
           "selector": {
             "metadata": "Measures_Table.Estimated Tariff Revenue USD"
+          }
+        }
+      ],
+      "referenceLabel": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Tariff Label"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Measures_Table.Estimated Tariff Revenue USD",
+            "id": "field-9eb83c0b-32d8-40d8-8659-b645bce3787a",
+            "order": 0
           }
         }
       ]

@@ -83,5 +83,72 @@
       }
     ]
   },
-  "visibility": "HiddenInViewMode"
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "2b67b25019c80a803a7d",
+      "target": "a83ad87070109e729b29",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2b67b25019c80a803a7d",
+      "target": "54af240908b8760ed1cc",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2b67b25019c80a803a7d",
+      "target": "49e6244dd8a3854bc2ad",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2b67b25019c80a803a7d",
+      "target": "27e24db60059b87050dc",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2b67b25019c80a803a7d",
+      "target": "a2a23a064e0c6ae87948",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2b67b25019c80a803a7d",
+      "target": "07b64ae308c40e00402a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2b67b25019c80a803a7d",
+      "target": "07c6d1665c1b0236615a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2b67b25019c80a803a7d",
+      "target": "1a22a78eb2105dc31887",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2b67b25019c80a803a7d",
+      "target": "492d236b0a69ec11767c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2b67b25019c80a803a7d",
+      "target": "256a4db82bb31936e3b2",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2b67b25019c80a803a7d",
+      "target": "e742fb00a06c70aa60ac",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2b67b25019c80a803a7d",
+      "target": "59501cad3d1c60047055",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2b67b25019c80a803a7d",
+      "target": "c80e7fee6c29ae1d1734",
+      "type": "NoFilter"
+    }
+  ]
 }

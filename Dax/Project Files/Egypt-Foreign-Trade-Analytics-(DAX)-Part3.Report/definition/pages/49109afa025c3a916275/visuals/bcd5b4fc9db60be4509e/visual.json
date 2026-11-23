@@ -28,7 +28,7 @@
               },
               "queryRef": "Measures_Table.Estimated Tariff Revenue USD",
               "nativeQueryRef": "Estimated Tariff Revenue USD",
-              "displayName": "Estimated Tariff Revenue"
+              "displayName": "Tariff Revenue (est.)"
             }
           ]
         }
@@ -70,10 +70,30 @@
                   "Value": "1L"
                 }
               }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
             }
           },
           "selector": {
             "metadata": "Measures_Table.Estimated Tariff Revenue USD"
+          }
+        }
+      ],
+      "label": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            }
           }
         }
       ]

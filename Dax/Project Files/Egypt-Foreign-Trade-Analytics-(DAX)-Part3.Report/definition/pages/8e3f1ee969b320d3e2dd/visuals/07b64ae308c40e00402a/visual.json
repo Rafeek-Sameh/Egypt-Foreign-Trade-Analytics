@@ -76,6 +76,36 @@
             "metadata": "Measures_Table.Transactions Count"
           }
         }
+      ],
+      "referenceLabel": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Transactions Label"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Measures_Table.Transactions Count",
+            "id": "field-81ff9707-199e-422c-914d-ee6c2f491c88",
+            "order": 0
+          }
+        }
       ]
     }
   }

@@ -128,7 +128,7 @@
                         }
                       },
                       "FillRule": {
-                        "linearGradient2": {
+                        "linearGradient3": {
                           "min": {
                             "color": {
                               "Literal": {
@@ -136,10 +136,22 @@
                               }
                             }
                           },
+                          "mid": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#F7F7F7'"
+                              }
+                            },
+                            "value": {
+                              "Literal": {
+                                "Value": "1D"
+                              }
+                            }
+                          },
                           "max": {
                             "color": {
                               "Literal": {
-                                "Value": "'#00FF2A'"
+                                "Value": "'#2E9E5B'"
                               }
                             }
                           },
@@ -171,6 +183,7 @@
         }
       ]
     },
+    "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
       "title": [
         {
@@ -191,8 +204,27 @@
             }
           }
         }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Savings per $ CapEx above 1.0 = pays back in under a year'"
+                }
+              }
+            }
+          }
+        }
       ]
-    },
-    "drillFilterOtherVisuals": true
+    }
   }
 }

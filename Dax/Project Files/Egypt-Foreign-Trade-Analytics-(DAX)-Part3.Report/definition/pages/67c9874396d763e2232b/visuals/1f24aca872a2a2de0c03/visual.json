@@ -28,7 +28,7 @@
               },
               "queryRef": "Measures_Table.EU Partnership Imports %",
               "nativeQueryRef": "EU Partnership Imports %",
-              "displayName": "EU Partnership Imports"
+              "displayName": "EU Share of Imports"
             }
           ]
         }
@@ -52,6 +52,38 @@
         "isDefaultSort": true
       }
     },
-    "drillFilterOtherVisuals": true
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "referenceLabel": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "EU Terms Label"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Measures_Table.EU Partnership Imports %",
+            "id": "field-37144d5d-8f3c-4275-8c2f-d81f18371608",
+            "order": 0
+          }
+        }
+      ]
+    }
   }
 }

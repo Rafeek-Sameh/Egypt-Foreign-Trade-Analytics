@@ -20,6 +20,7 @@ table Dim_Ports
 
 	column 'Port Type'
 		dataType: string
+		isHidden
 		lineageTag: 4e489870-8d75-4788-af44-1f9bc94d96e5
 		summarizeBy: none
 		sourceColumn: Port_Type

@@ -28,7 +28,7 @@
               },
               "queryRef": "Measures_Table.Golden License Savings %",
               "nativeQueryRef": "Golden License Savings %",
-              "displayName": "Golden License Savings"
+              "displayName": "Golden License Share"
             }
           ]
         }
@@ -52,6 +52,38 @@
         "isDefaultSort": true
       }
     },
-    "drillFilterOtherVisuals": true
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "referenceLabel": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Golden Share Label"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Measures_Table.Golden License Savings %",
+            "id": "field-fdf22453-20f1-4849-9919-345857b611dc",
+            "order": 0
+          }
+        }
+      ]
+    }
   }
 }

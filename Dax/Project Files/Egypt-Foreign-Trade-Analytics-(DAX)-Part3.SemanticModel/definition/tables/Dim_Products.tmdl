@@ -44,6 +44,7 @@ table Dim_Products
 
 	column Unit
 		dataType: string
+		isHidden
 		lineageTag: 0bb7ac9d-7812-4455-9b82-7340df8722f2
 		summarizeBy: none
 		sourceColumn: Unit
@@ -68,6 +69,7 @@ table Dim_Products
 
 	column 'Industry Complexity'
 		dataType: string
+		isHidden
 		lineageTag: e5140296-a69e-476b-bf6f-48445c7152e1
 		summarizeBy: none
 		sourceColumn: Industry_Complexity
@@ -76,6 +78,7 @@ table Dim_Products
 
 	column 'Estimated CapEx Tier'
 		dataType: string
+		isHidden
 		lineageTag: 6ffdbddf-7eb7-4902-bf2b-bb586d6d5e69
 		summarizeBy: none
 		sourceColumn: Estimated_CapEx_Tier

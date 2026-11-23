@@ -28,7 +28,7 @@
               },
               "queryRef": "Measures_Table.WTO Standard Imports %",
               "nativeQueryRef": "Imports from WTO Standard Countries:",
-              "displayName": "Standard WTO Imports"
+              "displayName": "WTO-Terms Share"
             }
           ]
         }
@@ -52,6 +52,38 @@
         "isDefaultSort": true
       }
     },
-    "drillFilterOtherVisuals": true
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "referenceLabel": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "WTO Terms Label"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Measures_Table.WTO Standard Imports %",
+            "id": "field-9ac0f99a-7c91-4d40-b8c2-f71f53d34f42",
+            "order": 0
+          }
+        }
+      ]
+    }
   }
 }

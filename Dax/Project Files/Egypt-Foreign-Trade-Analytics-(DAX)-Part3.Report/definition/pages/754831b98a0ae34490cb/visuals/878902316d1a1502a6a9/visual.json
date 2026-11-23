@@ -32,12 +32,45 @@
                 }
               },
               "queryRef": "Min(Dim_Products.Localization Priority)",
-              "nativeQueryRef": "Localization Priority"
+              "nativeQueryRef": "Localization Priority",
+              "displayName": "Localization Priority"
             }
           ]
         }
       }
     },
-    "drillFilterOtherVisuals": true
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "referenceLabel": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Localization Card Label"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Min(Dim_Products.Localization Priority)",
+            "id": "field-8dd8acc8-8bbd-4cf7-8327-dcd15fa52c22",
+            "order": 0
+          }
+        }
+      ]
+    }
   }
 }

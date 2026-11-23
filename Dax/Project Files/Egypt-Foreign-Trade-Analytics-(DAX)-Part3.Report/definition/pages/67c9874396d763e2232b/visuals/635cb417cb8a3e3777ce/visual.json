@@ -28,7 +28,7 @@
               },
               "queryRef": "Measures_Table.Export Coverage Ratio %",
               "nativeQueryRef": "Export Coverage Ratio %",
-              "displayName": "Export Coverage Ratio"
+              "displayName": "Export Coverage"
             }
           ]
         }
@@ -52,6 +52,38 @@
         "isDefaultSort": true
       }
     },
-    "drillFilterOtherVisuals": true
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "referenceLabel": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Trade Position"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 0
+                }
+              }
+            ],
+            "metadata": "Measures_Table.Export Coverage Ratio %",
+            "id": "field-b88158c2-9571-41d4-9d87-a6db35d854f9",
+            "order": 0
+          }
+        }
+      ]
+    }
   }
 }

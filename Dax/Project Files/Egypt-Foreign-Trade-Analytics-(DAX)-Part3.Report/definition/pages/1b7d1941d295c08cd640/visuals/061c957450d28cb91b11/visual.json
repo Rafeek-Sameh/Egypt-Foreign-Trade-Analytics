@@ -10,7 +10,7 @@
     "tabOrder": 4000
   },
   "visual": {
-    "visualType": "lineClusteredColumnComboChart",
+    "visualType": "clusteredColumnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -47,11 +47,7 @@
               },
               "queryRef": "Measures_Table.Total Imports (M USD)",
               "nativeQueryRef": "Total Imports (M USD)"
-            }
-          ]
-        },
-        "Y2": {
-          "projections": [
+            },
             {
               "field": {
                 "Measure": {

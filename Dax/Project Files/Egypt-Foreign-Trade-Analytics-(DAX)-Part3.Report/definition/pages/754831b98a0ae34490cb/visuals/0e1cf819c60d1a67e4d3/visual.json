@@ -58,7 +58,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Substitution Score'"
+                  "Value": "'Substitution Score (0–100, target 70)'"
                 }
               }
             }
@@ -71,7 +71,14 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Average score across products. 70+ = high priority'"
                 }
               }
             }
@@ -95,6 +102,13 @@
               "expr": {
                 "Literal": {
                   "Value": "100D"
+                }
+              }
+            },
+            "target": {
+              "expr": {
+                "Literal": {
+                  "Value": "70D"
                 }
               }
             }
