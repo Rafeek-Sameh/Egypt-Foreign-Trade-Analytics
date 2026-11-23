@@ -4,10 +4,10 @@
   "position": {
     "x": 0,
     "y": 215.77420010720689,
-    "z": 9001,
+    "z": 9000,
     "height": 863.09680042882758,
     "width": 922.15079203711582,
-    "tabOrder": 9001
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -165,6 +165,13 @@
               "expr": {
                 "Literal": {
                   "Value": "1D"
+                }
+              }
+            },
+            "logAxisScale": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

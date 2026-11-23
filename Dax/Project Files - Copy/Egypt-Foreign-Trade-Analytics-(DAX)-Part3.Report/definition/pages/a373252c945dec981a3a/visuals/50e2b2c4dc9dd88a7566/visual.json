@@ -4,10 +4,10 @@
   "position": {
     "x": 922.15079203711582,
     "y": 515.586772887747,
-    "z": 9000,
+    "z": 8000,
     "height": 324.79695384558511,
     "width": 997.10393523225082,
-    "tabOrder": 9000
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -183,7 +183,6 @@
         }
       ]
     },
-    "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
       "title": [
         {
@@ -225,6 +224,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

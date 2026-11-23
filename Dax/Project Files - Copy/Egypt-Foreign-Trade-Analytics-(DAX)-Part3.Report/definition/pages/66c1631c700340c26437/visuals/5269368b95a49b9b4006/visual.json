@@ -4,10 +4,10 @@
   "position": {
     "x": 2305,
     "y": 360,
-    "z": 8003,
+    "z": 10000,
     "height": 690,
     "width": 1535,
-    "tabOrder": 8003
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "scatterChart",
@@ -129,6 +129,13 @@
                   "Value": "true"
                 }
               }
+            },
+            "logAxisScale": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           }
         }
@@ -140,6 +147,19 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "bubbles": [
+        {
+          "properties": {
+            "bubbleSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "98L"
                 }
               }
             }
@@ -183,5 +203,51 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "fdee95f17a03988dd0d3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_Countries"
+              }
+            },
+            "Property": "Partner Country"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d8ea790166d2ae24cc22",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Partner Market Size Index"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f945504873f9c32e1295",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Measures_Table"
+              }
+            },
+            "Property": "Total Exports (M USD)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

@@ -3,10 +3,10 @@
   "name": "4179f1de90044de9a637",
   "position": {
     "x": 0,
-    "y": 640,
+    "y": 638.5219399538106,
     "z": 7000,
-    "height": 630,
-    "width": 1070,
+    "height": 759.32338805318022,
+    "width": 1069.9556831658449,
     "tabOrder": 7000
   },
   "visual": {
@@ -110,6 +110,13 @@
               "expr": {
                 "Literal": {
                   "Value": "1D"
+                }
+              }
+            },
+            "logAxisScale": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "5066a083d069b028408c",
   "position": {
-    "x": 2785,
-    "y": 640,
-    "z": 12000,
-    "height": 630,
-    "width": 1055,
-    "tabOrder": 12000
+    "x": 1859.4794332438676,
+    "y": 638.5219399538106,
+    "z": 11000,
+    "height": 763.63772548530062,
+    "width": 1975.9665439111168,
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "tableEx",
@@ -41,7 +41,8 @@
                 }
               },
               "queryRef": "Measures_Table.Target FX Savings (M USD)",
-              "nativeQueryRef": "Target FX Savings (M USD)"
+              "nativeQueryRef": "Target FX Savings (M)",
+              "displayName": "Target FX Savings (M)"
             },
             {
               "field": {
@@ -55,7 +56,8 @@
                 }
               },
               "queryRef": "Measures_Table.Total Required CapEx (M USD)",
-              "nativeQueryRef": "Total Required CapEx (M USD)"
+              "nativeQueryRef": "Total Required CapEx (M)",
+              "displayName": "Total Required CapEx (M)"
             },
             {
               "field": {
@@ -69,7 +71,8 @@
                 }
               },
               "queryRef": "Measures_Table.Total New Jobs",
-              "nativeQueryRef": "Total New Jobs"
+              "nativeQueryRef": "New Jobs",
+              "displayName": "New Jobs"
             },
             {
               "field": {
@@ -83,7 +86,8 @@
                 }
               },
               "queryRef": "Measures_Table.Payback Period (Years)",
-              "nativeQueryRef": "Payback Period (Years)"
+              "nativeQueryRef": "Payback (Years)",
+              "displayName": "Payback (Years)"
             },
             {
               "field": {
@@ -112,10 +116,10 @@
                     "Entity": "Measures_Table"
                   }
                 },
-                "Property": "Total Required CapEx (M USD)"
+                "Property": "Total New Jobs"
               }
             },
-            "direction": "Descending"
+            "direction": "Ascending"
           }
         ]
       }
@@ -185,9 +189,161 @@
             "metadata": "Measures_Table.Priority Score"
           }
         }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'fixedWidth'"
+                }
+              }
+            },
+            "defaultColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "90D"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "25D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "22D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "gridHorizontalWeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "554.3143368200917D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Dim_Products.Product Name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "334.93700620026254D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.Target FX Savings (M USD)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "382.22552858297746D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.Total Required CapEx (M USD)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "159.3514346919003D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.Total New Jobs"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "248.7074273571746D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.Payback Period (Years)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "262.8177066564914D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Measures_Table.Priority Score"
+          }
+        }
       ]
     },
-    "drillFilterOtherVisuals": true,
     "visualContainerObjects": {
       "title": [
         {
@@ -228,8 +384,22 @@
             }
           }
         }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   },
   "filterConfig": {
     "filters": [

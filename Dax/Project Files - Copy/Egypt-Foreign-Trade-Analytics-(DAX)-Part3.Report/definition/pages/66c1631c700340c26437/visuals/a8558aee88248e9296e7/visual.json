@@ -4,10 +4,10 @@
   "position": {
     "x": 1115,
     "y": 1165,
-    "z": 8002,
+    "z": 9000,
     "height": 275,
     "width": 1185,
-    "tabOrder": 8002
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -103,65 +103,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "cc72a20395c233551453",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Dim_Products"
-              }
-            },
-            "Property": "Commodity Trade Class"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "3c8667147937bef8640d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Products (Count)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "ba02b4a0dfa7ef9017dc",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Total Exports (M USD)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "e9caa6b66ed661520bd9",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Measures_Table"
-              }
-            },
-            "Property": "Total Imports (M USD)"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }
