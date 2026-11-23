@@ -1,0 +1,113 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 43.652364366756856,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0.47482857913308862,
+            "y": 0
+          },
+          "nodeIndex": "Dim_Countries",
+          "nodeLineageTag": "c2fc1250-8ba4-435c-9289-7dd8cdf87b4a",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 557.94650933776234
+          },
+          "nodeIndex": "Dim_Date",
+          "nodeLineageTag": "b184323c-77e5-4c06-bba9-9fb0bdb0ce02",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 666.32772934517959,
+            "y": 0
+          },
+          "nodeIndex": "Dim_Industrial_Opportunity",
+          "nodeLineageTag": "4e5ebc4e-3abf-459f-85f1-96eca606618e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 348.66106267851308,
+            "y": 0.741700061456811
+          },
+          "nodeIndex": "Dim_Ports",
+          "nodeLineageTag": "a8079a98-9829-4b2b-9db7-b0ff8561acde",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 706.56411033229483,
+            "y": 545.883409278187
+          },
+          "nodeIndex": "Dim_Products",
+          "nodeLineageTag": "ff553f37-8dc1-48e3-822b-67e709bda4b3",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 360.02932459579392,
+            "y": 292.20656643081406
+          },
+          "nodeIndex": "Fact_Trade_Transactions",
+          "nodeLineageTag": "54ff6c1d-c4a6-4827-90d9-3771328d72af",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 990.56411033229483,
+            "y": 370.94170463909347
+          },
+          "nodeIndex": "Measures_Table",
+          "nodeLineageTag": "408c3eee-a265-40eb-8cf9-ee521f6be600",
+          "size": {
+            "height": 237.75362318840575,
+            "width": 234
+          },
+          "zIndex": 6
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 40.864952821888131,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

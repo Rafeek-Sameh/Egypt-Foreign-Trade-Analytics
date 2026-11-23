@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Egypt-Foreign-Trade-Analytics-(DAX)-Part3"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "6f13c39f-e810-439d-bb0a-ca4b8a94cbde"
+  }
+}

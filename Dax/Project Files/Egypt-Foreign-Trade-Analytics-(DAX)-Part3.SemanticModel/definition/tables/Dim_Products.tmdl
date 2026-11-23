@@ -1,0 +1,144 @@
+table Dim_Products
+	lineageTag: ff553f37-8dc1-48e3-822b-67e709bda4b3
+
+	column Product_ID
+		dataType: string
+		isHidden
+		lineageTag: 4282a7da-10be-4794-ab62-098ee6ec4b8f
+		summarizeBy: none
+		sourceColumn: Product_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'HS Code'
+		dataType: string
+		lineageTag: 1a07bb72-4e06-4874-b4f1-8d87fad70ca1
+		summarizeBy: none
+		sourceColumn: HS_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Name'
+		dataType: string
+		lineageTag: 480363a9-54d2-4c07-a35a-90c6030c793e
+		summarizeBy: none
+		sourceColumn: Product_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Category'
+		dataType: string
+		lineageTag: 32d6f026-ec2b-4e39-b0a1-c5ccb581e7da
+		summarizeBy: none
+		sourceColumn: Product_Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sector
+		dataType: string
+		lineageTag: 98fe073b-fea5-43d4-b232-e09bd06d19e4
+		summarizeBy: none
+		sourceColumn: Sector
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unit
+		dataType: string
+		lineageTag: 0bb7ac9d-7812-4455-9b82-7340df8722f2
+		summarizeBy: none
+		sourceColumn: Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Supply Chain Stage'
+		dataType: string
+		lineageTag: 1776090c-f518-4866-9adf-f8521b83ad29
+		summarizeBy: none
+		sourceColumn: Supply_Chain_Stage
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Value Chain Group'
+		dataType: string
+		lineageTag: 4bd19d7a-2067-4415-b197-e249c2cbca8b
+		summarizeBy: none
+		sourceColumn: Value_Chain_Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Industry Complexity'
+		dataType: string
+		lineageTag: e5140296-a69e-476b-bf6f-48445c7152e1
+		summarizeBy: none
+		sourceColumn: Industry_Complexity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Estimated CapEx Tier'
+		dataType: string
+		lineageTag: 6ffdbddf-7eb7-4902-bf2b-bb586d6d5e69
+		summarizeBy: none
+		sourceColumn: Estimated_CapEx_Tier
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Essentiality'
+		dataType: string
+		lineageTag: 37f7def8-d803-4ac8-8de1-97ed4a3b3253
+		summarizeBy: none
+		sourceColumn: Product_Essentiality
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Local Raw Material'
+		dataType: string
+		lineageTag: dce97b69-29b1-41c1-adb5-4ccd4039567b
+		summarizeBy: none
+		sourceColumn: Local_Raw_Material
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Localization Priority'
+		dataType: string
+		lineageTag: ebc53b6b-2137-4100-8c02-db77ab99382a
+		summarizeBy: none
+		sourceColumn: Localization_Priority
+		sortByColumn: Localization_Priority_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Commodity Trade Class'
+		dataType: string
+		lineageTag: d1d50b71-d5c5-4b6f-a845-bb59671c878c
+		summarizeBy: none
+		sourceColumn: Commodity_Trade_Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column Localization_Priority_Sort
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2e536555-d029-479c-9d83-743095bb9db3
+		summarizeBy: none
+		sourceColumn: Localization_Priority_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Products = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Career\Data Analysis\DEPI\Team Project\Tables\Dim_Products.xlsx"), null, true),
+				    Dim_Products_Sheet = Source{[Item="Dim_Products",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Dim_Products_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Product_ID", type text}, {"HS_Code", Int64.Type}, {"Product_Name", type text}, {"Product_Category", type text}, {"Sector", type text}, {"Unit", type text}, {"Supply_Chain_Stage", type text}, {"Value_Chain_Group", type text}, {"Industry_Complexity", type text}, {"Estimated_CapEx_Tier", type text}, {"Product_Essentiality", type text}, {"Local_Raw_Material", type text}, {"Localization_Priority", type text}, {"Commodity_Trade_Class", type text}}),
+				    Custom1 = Table.TransformColumns(#"Changed Type", {{"HS_Code", each Text.PadStart(Text.From(_), 6, "0"), type text}}),
+				    #"Added Priority Sort" = Table.AddColumn(Custom1, "Localization_Priority_Sort", each let p = [Localization_Priority] in if p = null then 4 else if Text.Contains(p, "High", Comparer.OrdinalIgnoreCase) then 1 else if Text.Contains(p, "Medium", Comparer.OrdinalIgnoreCase) then 2 else if Text.Contains(p, "Low", Comparer.OrdinalIgnoreCase) then 3 else 4, Int64.Type)
+				in
+				    #"Added Priority Sort"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

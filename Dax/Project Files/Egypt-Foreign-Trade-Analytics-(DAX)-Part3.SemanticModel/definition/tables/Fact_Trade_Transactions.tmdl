@@ -1,0 +1,132 @@
+table Fact_Trade_Transactions
+	lineageTag: 54ff6c1d-c4a6-4827-90d9-3771328d72af
+
+	column Transaction_ID
+		dataType: string
+		isHidden
+		lineageTag: c0ca40b1-9858-4521-bee3-0509d3a685dc
+		summarizeBy: none
+		sourceColumn: Transaction_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date_Key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5f5d921a-25be-4d7a-98e5-61a433eebe98
+		summarizeBy: none
+		sourceColumn: Date_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 103b0723-8ca0-4172-b6c0-0c074f2be46e
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: ecaddc45-876f-4f08-bca4-6d07c253354f
+			defaultHierarchy: LocalDateTable_5f145133-5ae0-44cc-a21e-7748c5d5a9d1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Product_ID
+		dataType: string
+		isHidden
+		lineageTag: a468795f-78a6-4bea-b3b4-f8637b295deb
+		summarizeBy: none
+		sourceColumn: Product_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country_ID
+		dataType: string
+		isHidden
+		lineageTag: 0ef3547d-9718-44fc-a2a4-8ed82872dbca
+		summarizeBy: none
+		sourceColumn: Country_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Port_ID
+		dataType: string
+		isHidden
+		lineageTag: f46224d2-ed0d-4b34-9f9b-11e2c4e44b99
+		summarizeBy: none
+		sourceColumn: Port_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Trade Flow'
+		dataType: string
+		lineageTag: 0cd57e9f-3809-4cca-bbcd-d83bce0f9128
+		summarizeBy: none
+		sourceColumn: Trade_Flow
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e92c9493-4ca6-486c-8078-524e0f46ad46
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Unit Price USD'
+		dataType: double
+		isHidden
+		lineageTag: 0c5538ab-40ef-4cfb-8d4c-be0653d5b781
+		summarizeBy: sum
+		sourceColumn: Unit_Price_USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Total Value USD'
+		dataType: double
+		isHidden
+		lineageTag: 3396def5-4bfd-4c99-a886-d613e0fb556b
+		summarizeBy: sum
+		sourceColumn: Total_Value_USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Partner Global Demand USD'
+		dataType: double
+		isHidden
+		lineageTag: 70ea0cb2-2025-41a1-959f-823a57161db8
+		summarizeBy: sum
+		sourceColumn: Partner_Global_Demand_USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Fact_Trade_Transactions = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Career\Data Analysis\DEPI\Team Project\Tables\Fact_Trade_Transactions.xlsx"), null, true),
+				    Fact_Trade_Transactions_Sheet = Source{[Item="Fact_Trade_Transactions",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Fact_Trade_Transactions_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Transaction_ID", type text}, {"Date_Key", Int64.Type}, {"Date", type date}, {"Product_ID", type text}, {"Country_ID", type text}, {"Port_ID", type text}, {"Trade_Flow", type text}, {"Quantity", Int64.Type}, {"Unit_Price_USD", type number}, {"Total_Value_USD", type number}, {"Partner_Global_Demand_USD", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

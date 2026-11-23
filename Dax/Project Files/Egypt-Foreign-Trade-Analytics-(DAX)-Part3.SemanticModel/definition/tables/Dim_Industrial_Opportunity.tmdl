@@ -1,0 +1,181 @@
+table Dim_Industrial_Opportunity
+	lineageTag: 4e5ebc4e-3abf-459f-85f1-96eca606618e
+
+	column Product_ID
+		dataType: string
+		isHidden
+		lineageTag: 92306c2a-0cc7-4401-8f65-d204447b77cc
+		summarizeBy: none
+		sourceColumn: Product_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Local Capacity Gap Pct'
+		dataType: double
+		isHidden
+		lineageTag: 89ceb345-3fe0-4c17-8f3b-843c0b5dcc34
+		summarizeBy: sum
+		sourceColumn: Local_Capacity_Gap_Pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Local Value Added Pct'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 61e252ff-a9af-46e3-9358-95bfd7cdabc7
+		summarizeBy: sum
+		sourceColumn: Local_Value_Added_Pct
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Import Substitution Score'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 749d4b0c-c25c-4dc8-81f5-830c0ce11bf9
+		summarizeBy: sum
+		sourceColumn: Import_Substitution_Score
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Avg Freight Cost Pct'
+		dataType: double
+		isHidden
+		lineageTag: 40b6788b-a09a-46b3-8a35-a9d4918938d9
+		summarizeBy: sum
+		sourceColumn: Avg_Freight_Cost_Pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Effective Customs Protection Pct'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 44c439e4-162c-41f9-a41f-5b64aa9fe252
+		summarizeBy: sum
+		sourceColumn: Effective_Customs_Protection_Pct
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Est Factory CapEx M USD'
+		dataType: double
+		isHidden
+		lineageTag: 508ffadb-345f-4fe2-9ac6-147e3b156d10
+		summarizeBy: sum
+		sourceColumn: Est_Factory_CapEx_M_USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Direct Jobs Per 10M USD'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a4d43459-996b-4c04-b6ed-684c6a518de6
+		summarizeBy: sum
+		sourceColumn: Direct_Jobs_Per_10M_USD
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Export RCA Index'
+		dataType: double
+		isHidden
+		lineageTag: 2a495eb4-795e-4f64-b70d-3111deb121c4
+		summarizeBy: sum
+		sourceColumn: Export_RCA_Index
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Export Rebate Incentive Pct'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9a205670-fe47-4722-9105-5a915be87105
+		summarizeBy: sum
+		sourceColumn: Export_Rebate_Incentive_Pct
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Target 2030 Import Cut Pct'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: c361cffa-6d38-40a8-9c2c-ea5e00b11c3c
+		summarizeBy: sum
+		sourceColumn: Target_2030_Import_Cut_Pct
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Golden License Eligible'
+		dataType: string
+		lineageTag: 45045e1c-0c2a-419e-9ea7-262e3f952053
+		summarizeBy: none
+		sourceColumn: Golden_License_Eligible
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Annual Import Avg M USD'
+		dataType: double
+		isHidden
+		lineageTag: b553717b-a47f-4969-b61e-4b239c5f0a40
+		summarizeBy: sum
+		sourceColumn: Annual_Import_Avg_M_USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Target Annual FX Savings M USD'
+		dataType: double
+		isHidden
+		lineageTag: 0b5c26f8-5d01-430c-b3db-a7db13bbe94b
+		summarizeBy: sum
+		sourceColumn: Target_Annual_FX_Savings_M_USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Required Factories Count'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0292ab76-b545-43ae-9deb-fe50d61dc52e
+		summarizeBy: sum
+		sourceColumn: Required_Factories_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Estimated Total New Jobs'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9b040645-91ef-4975-9d51-57cc6d024de0
+		summarizeBy: sum
+		sourceColumn: Estimated_Total_New_Jobs
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Industrial_Opportunity = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Career\Data Analysis\DEPI\Team Project\Tables\Dim_Industrial_Opportunity.xlsx"), null, true),
+				    Dim_Industrial_Opportunity_Sheet = Source{[Item="Dim_Industrial_Opportunity",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Dim_Industrial_Opportunity_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Product_ID", type text}, {"Local_Capacity_Gap_Pct", type number}, {"Local_Value_Added_Pct", Int64.Type}, {"Import_Substitution_Score", Int64.Type}, {"Avg_Freight_Cost_Pct", type number}, {"Effective_Customs_Protection_Pct", Int64.Type}, {"Est_Factory_CapEx_M_USD", type number}, {"Direct_Jobs_Per_10M_USD", Int64.Type}, {"Export_RCA_Index", type number}, {"Export_Rebate_Incentive_Pct", Int64.Type}, {"Target_2030_Import_Cut_Pct", Int64.Type}, {"Golden_License_Eligible", type text}, {"Annual_Import_Avg_M_USD", type number}, {"Target_Annual_FX_Savings_M_USD", type number}, {"Required_Factories_Count", Int64.Type}, {"Estimated_Total_New_Jobs", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

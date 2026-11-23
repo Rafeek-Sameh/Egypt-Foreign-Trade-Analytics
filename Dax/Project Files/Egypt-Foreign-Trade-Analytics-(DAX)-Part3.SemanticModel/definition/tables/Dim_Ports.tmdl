@@ -1,0 +1,44 @@
+table Dim_Ports
+	lineageTag: a8079a98-9829-4b2b-9db7-b0ff8561acde
+
+	column Port_ID
+		dataType: string
+		isHidden
+		lineageTag: d9546bd2-0f4e-40d4-8f9a-a49e098ee956
+		summarizeBy: none
+		sourceColumn: Port_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Port Name'
+		dataType: string
+		lineageTag: 07a2622e-94e9-4018-a7b3-f5a90c01775d
+		summarizeBy: none
+		sourceColumn: Port_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Port Type'
+		dataType: string
+		lineageTag: 4e489870-8d75-4788-af44-1f9bc94d96e5
+		summarizeBy: none
+		sourceColumn: Port_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Ports = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Career\Data Analysis\DEPI\Team Project\Tables\Dim_Ports.xlsx"), null, true),
+				    Dim_Ports_Sheet = Source{[Item="Dim_Ports",Kind="Sheet"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(Dim_Ports_Sheet,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Port_ID", type text}, {"Port_Name", type text}, {"Port_Type", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

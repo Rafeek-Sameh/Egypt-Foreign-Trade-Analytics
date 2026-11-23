@@ -1,0 +1,14 @@
+createOrReplace
+
+	ref table Measures_Table
+
+		measure 'Avg Local Content %' = ```
+				
+				    AVERAGE(Dim_Industrial_Opportunity[Local_Value_Added_Pct]) / 100
+				```
+			displayFolder: Import Substitution
+			formatString: 0.0%
+			lineageTag: 67ba5caa-a414-408c-b8a0-fbfc3208c58b
+
+			annotation PBI_FormatHint = {"isGeneralNumber":true}
+

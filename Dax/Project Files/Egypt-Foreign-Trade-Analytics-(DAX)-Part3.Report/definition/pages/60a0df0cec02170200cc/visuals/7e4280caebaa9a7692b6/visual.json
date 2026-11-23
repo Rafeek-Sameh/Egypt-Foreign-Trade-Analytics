@@ -1,0 +1,57 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "7e4280caebaa9a7692b6",
+  "position": {
+    "x": 3379.7053658897248,
+    "y": 236.21596643315283,
+    "z": 12001,
+    "height": 349.78133491063016,
+    "width": 458.80408864900835,
+    "tabOrder": 12001
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Measures_Table"
+                    }
+                  },
+                  "Property": "Golden License Savings %"
+                }
+              },
+              "queryRef": "Measures_Table.Golden License Savings %",
+              "nativeQueryRef": "Golden License Savings %",
+              "displayName": "Golden License Savings"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Measures_Table"
+                  }
+                },
+                "Property": "Golden License Savings %"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

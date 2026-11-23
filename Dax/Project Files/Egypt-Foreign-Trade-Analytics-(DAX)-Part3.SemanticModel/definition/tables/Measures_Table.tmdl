@@ -1,0 +1,732 @@
+table Measures_Table
+	lineageTag: 408c3eee-a265-40eb-8cf9-ee521f6be600
+
+	measure 'Total Imports USD' = CALCULATE(SUM(Fact_Trade_Transactions[Total Value USD]),Fact_Trade_Transactions[Trade Flow] = "Import")
+		formatString: \$#,0;-\$#,0;\$#,0
+		displayFolder: Trade Flow
+		lineageTag: d71e0eab-18a3-4677-98c2-9798d75bff43
+
+	measure 'Total Exports USD' = CALCULATE( SUM(Fact_Trade_Transactions[Total Value USD]),Fact_Trade_Transactions[Trade Flow] = "Export")
+		formatString: \$#,0;-\$#,0;\$#,0
+		displayFolder: Trade Flow
+		lineageTag: ca59f0c2-5d5b-4dbf-a467-077c19b60989
+
+	measure 'Trade Balance' = [Total Exports USD] - [Total Imports USD]
+		formatString: \$#,0;-\$#,0;\$#,0
+		displayFolder: Trade Flow
+		lineageTag: 9802b861-c46d-4838-9cda-edd329781368
+
+	measure 'Total Trade Volume' = [Total Exports USD] + [Total Imports USD]
+		formatString: \$#,0;-\$#,0;\$#,0
+		displayFolder: Trade Flow
+		lineageTag: 3cb2a5a3-3a5d-43fc-8dd5-a28816926696
+
+	measure 'Export Coverage Ratio %' = DIVIDE([Total Exports USD], [Total Imports USD])
+		formatString: 0.0%
+		displayFolder: Trade Flow
+		lineageTag: a6940b4c-1233-4aaa-be3c-20b471d30d85
+
+	measure 'Total Imports (M USD)' = DIVIDE([Total Imports USD], 1000000)
+		formatString: #,0.0
+		displayFolder: Trade Flow
+		lineageTag: 3d121087-5127-4101-bce4-5e5a87054adf
+
+	measure 'Total Exports (M USD)' = DIVIDE([Total Exports USD], 1000000)
+		formatString: #,0.0
+		displayFolder: Trade Flow
+		lineageTag: b2d246a7-986e-44bd-8e19-4d22a4476d2f
+
+	measure 'Imports PY' = CALCULATE([Total Imports USD], SAMEPERIODLASTYEAR(Dim_Date[Date]))
+		formatString: \$#,0;-\$#,0;\$#,0
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: ace7be1e-313b-4e18-8494-84b54ae57ae0
+
+	measure 'Imports YoY %' = DIVIDE([Total Imports USD] - [Imports PY], [Imports PY])
+		formatString: 0.0%
+		displayFolder: Trade Flow
+		lineageTag: aaee1662-6120-46bb-8a6f-b9ac32676d35
+
+	measure 'Exports PY' = CALCULATE([Total Exports USD], SAMEPERIODLASTYEAR(Dim_Date[Date]))
+		formatString: \$#,0;-\$#,0;\$#,0
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: 02d01be4-8543-408e-b584-6f178e19abf5
+
+	measure 'Exports YoY %' = DIVIDE([Total Exports USD] - [Exports PY], [Exports PY])
+		formatString: 0.0%
+		displayFolder: Trade Flow
+		lineageTag: dca56b5d-c3d4-4641-8aa6-39c9161142d6
+
+	measure 'Import Share %' = DIVIDE([Total Imports USD],CALCULATE([Total Imports USD], ALL(Dim_Products)))
+		formatString: 0.0%
+		displayFolder: Trade Flow
+		lineageTag: d4182c43-98b0-43d2-98fe-5fca881f165d
+
+	measure 'Target FX Savings (M USD)' = SUM(Dim_Industrial_Opportunity[Target Annual FX Savings M USD])
+		formatString: #,0.0
+		displayFolder: Import Substitution
+		lineageTag: 911fae37-8e4f-42c2-91d8-b62c245d2a12
+
+	measure 'Avg Capacity Gap %' =
+			
+			AVERAGE(Dim_Industrial_Opportunity[Local Capacity Gap Pct]) / 100
+		formatString: 0.0%
+		displayFolder: Import Substitution
+		lineageTag: 990d3b62-9747-44c0-b809-4f40a6f62f5f
+
+	measure 'Weighted Capacity Gap %' =
+			
+			DIVIDE(
+			    SUMX(
+			        Dim_Industrial_Opportunity,
+			        Dim_Industrial_Opportunity[Local Capacity Gap Pct]
+			            * Dim_Industrial_Opportunity[Annual Import Avg M USD]
+			    ),
+			    SUM(Dim_Industrial_Opportunity[Annual Import Avg M USD])
+			)/ 100
+		formatString: 0.0%
+		displayFolder: Import Substitution
+		lineageTag: 46a8cf79-a31d-4cf0-97ed-2f7c97a9950b
+
+	measure 'Avg Substitution Score' = AVERAGE(Dim_Industrial_Opportunity[Import Substitution Score])
+		formatString: 0.0
+		displayFolder: Import Substitution
+		lineageTag: b649e50a-6676-470e-8880-c4b78c562dd0
+
+	measure 'Avg Local Content %' = ```
+			
+			    AVERAGE(Dim_Industrial_Opportunity[Local Value Added Pct]) / 100
+			```
+		formatString: 0.0%
+		displayFolder: Import Substitution
+		lineageTag: 67ba5caa-a414-408c-b8a0-fbfc3208c58b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Customs Protection %' = ```
+			
+			    AVERAGE(Dim_Industrial_Opportunity[Effective Customs Protection Pct]) / 100
+			```
+		formatString: 0.0%
+		displayFolder: Import Substitution
+		lineageTag: de519b14-6b34-4f09-ae99-72004ad5d812
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg 2030 Import Cut Target %' = ```
+			
+			    AVERAGE(Dim_Industrial_Opportunity[Target 2030 Import Cut Pct]) / 100
+			```
+		formatString: 0.0%
+		displayFolder: Import Substitution
+		lineageTag: b32916c3-5205-433f-8281-707bb73dbdd4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Annual Import Baseline (M USD)' = SUM(Dim_Industrial_Opportunity[Annual Import Avg M USD])
+		formatString: #,0.0
+		displayFolder: Import Substitution
+		lineageTag: f0707945-7d5a-4d6d-a9a4-6160b0992586
+
+	measure 'Savings as % of Imports' = DIVIDE([Target FX Savings (M USD)],[Annual Import Baseline (M USD)])
+		formatString: 0.0%
+		displayFolder: Import Substitution
+		lineageTag: 16d1e617-b3c5-4a86-9429-5b15068093e1
+
+	measure 'Golden License Products' = CALCULATE(COUNTROWS(Dim_Industrial_Opportunity),Dim_Industrial_Opportunity[Golden License Eligible] = "Yes")
+		formatString: #,0
+		displayFolder: Import Substitution
+		lineageTag: c72cfa64-6e6a-4bab-9bbf-fdcdfb18bf37
+
+	measure 'Golden License Savings (M USD)' = CALCULATE([Target FX Savings (M USD)],Dim_Industrial_Opportunity[Golden License Eligible] = "Yes")
+		formatString: #,0.0
+		displayFolder: Import Substitution
+		lineageTag: 5bef22c1-3b6d-473e-99f2-6fdd856699ef
+
+	measure 'High Priority Products' = CALCULATE( COUNTROWS(Dim_Industrial_Opportunity),Dim_Industrial_Opportunity[Import Substitution Score] >= 70,Dim_Industrial_Opportunity[Local Capacity Gap Pct] >= 50)
+		formatString: #,0
+		displayFolder: Import Substitution
+		lineageTag: f198b3d0-bc55-4483-9059-e300544b6f4a
+
+	measure 'Savings Rank' =
+			
+			RANKX(
+			    ALL(Dim_Products[Product Name]),
+			    [Target FX Savings (M USD)],
+			    ,
+			    DESC,
+			    DENSE
+			)
+		formatString: #,0
+		displayFolder: Import Substitution
+		lineageTag: 2cb87ee1-eef3-4845-ab0d-d2e2edf432b6
+
+	measure 'Avg Annual Imports (M USD)' = DIVIDE([Total Imports (M USD)], DISTINCTCOUNT(Dim_Date[Year]))
+		formatString: #,0.0
+		displayFolder: Trade Flow
+		lineageTag: f9d868f4-c2ef-4e35-b27e-5026e7d6c000
+
+	measure 'Total New Jobs' = SUM(Dim_Industrial_Opportunity[Estimated Total New Jobs])
+		formatString: #,0
+		displayFolder: Investment & Jobs
+		lineageTag: 478c9dea-82c2-4674-877c-c9e6e26dc246
+
+	measure 'Total Required Factories' = SUM(Dim_Industrial_Opportunity[Required Factories Count])
+		formatString: #,0
+		displayFolder: Investment & Jobs
+		lineageTag: 03d0e52b-8a9e-4e72-b23d-ae2f9febda0f
+
+	measure 'Total Required CapEx (M USD)' = SUMX( Dim_Industrial_Opportunity, Dim_Industrial_Opportunity[Required Factories Count]* Dim_Industrial_Opportunity[Est Factory CapEx M USD])
+		formatString: #,0.0
+		displayFolder: Investment & Jobs
+		lineageTag: 3921999b-e7d5-4128-ba41-ef8910920683
+
+	measure 'CapEx per Job (USD)' = DIVIDE([Total Required CapEx (M USD)] * 1000000, [Total New Jobs])
+		formatString: \$#,0;-\$#,0;\$#,0
+		displayFolder: Investment & Jobs
+		lineageTag: d8751f7b-bb81-40ab-b098-7307c5e98eab
+
+	measure 'Payback Period (Years)' = DIVIDE([Total Required CapEx (M USD)], [Target FX Savings (M USD)])
+		formatString: 0.0
+		displayFolder: Investment & Jobs
+		lineageTag: 1135556a-6357-451e-b895-430c37c95d7d
+
+	measure 'Savings per $ CapEx' = DIVIDE([Target FX Savings (M USD)], [Total Required CapEx (M USD)])
+		formatString: 0.00
+		displayFolder: Investment & Jobs
+		lineageTag: d9ff06e5-2a32-4097-ba44-3b465fb45ba2
+
+	measure 'Jobs per M USD Savings' = DIVIDE([Total New Jobs], [Target FX Savings (M USD)])
+		formatString: 0.0
+		displayFolder: Investment & Jobs
+		lineageTag: 42749772-ab34-4a66-bdaf-77a9c63af051
+
+	measure 'Avg Direct Jobs per 10M USD' = AVERAGE(Dim_Industrial_Opportunity[Direct Jobs Per 10M USD])
+		formatString: 0.0
+		displayFolder: Investment & Jobs
+		lineageTag: 01542bdb-1ef8-4fdf-b6ff-752756924ce2
+
+	measure 'Total Freight Cost USD' =
+			
+			SUMX(
+			    Fact_Trade_Transactions,
+			    Fact_Trade_Transactions[Total Value USD] *
+			    RELATED(Dim_Industrial_Opportunity[Avg Freight Cost Pct]) / 100
+			)
+		formatString: \$#,0;-\$#,0;\$#,0
+		displayFolder: Logistics
+		lineageTag: 2703ac44-cc79-477f-aff3-884f33633fe9
+
+	measure 'Import Freight Cost USD' = ```
+			CALCULATE( [Total Freight Cost USD],Fact_Trade_Transactions[Trade Flow] = "Import" ) 
+			```
+		formatString: \$#,0;-\$#,0;\$#,0
+		displayFolder: Logistics
+		lineageTag: 9bf57dba-b895-4000-8f41-4f09665e4a2d
+
+	measure 'Freight % of Imports' = DIVIDE([Import Freight Cost USD], [Total Imports USD])
+		formatString: 0.0%
+		displayFolder: Logistics
+		lineageTag: b4afeba5-f60b-4328-b0f9-a8d2381bedbe
+
+	measure 'Avg Freight Cost %' = ```
+			
+			    AVERAGE(Dim_Industrial_Opportunity[Avg Freight Cost Pct]) / 100
+			```
+		formatString: 0.0%
+		displayFolder: Logistics
+		lineageTag: 008d1f1c-a463-4811-a961-f045ba6a6bb5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Export RCA' = AVERAGE(Dim_Industrial_Opportunity[Export RCA Index])
+		formatString: 0.00
+		displayFolder: Export Opportunities
+		lineageTag: 3e879263-47f0-4f4a-aad3-41187cbd7f70
+
+	measure 'Export Advantage Products' = CALCULATE(    COUNTROWS(Dim_Industrial_Opportunity),    Dim_Industrial_Opportunity[Export RCA Index] > 1)
+		formatString: #,0
+		displayFolder: Export Opportunities
+		lineageTag: 6526d24b-37ca-410e-8843-a04aae762b7e
+
+	measure 'Avg Export Rebate %' = ```
+			
+			    AVERAGE(Dim_Industrial_Opportunity[Export Rebate Incentive Pct]) / 100
+			```
+		formatString: 0.0%
+		displayFolder: Export Opportunities
+		lineageTag: 05b3eb52-cfd1-4887-abbe-459897cbdc01
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Export Rebate Value USD' = SUMX(    FILTER(Fact_Trade_Transactions, Fact_Trade_Transactions[Trade Flow] = "Export"),    Fact_Trade_Transactions[Total Value USD]        * RELATED(Dim_Industrial_Opportunity[Export Rebate Incentive Pct]) / 100)
+		formatString: \$#,0;-\$#,0;\$#,0
+		displayFolder: Export Opportunities
+		lineageTag: c05cab9a-8249-4ad9-bef7-2f71aebabd27
+
+	measure 'Export Opportunity Score' =
+			
+			VAR _rca = [Avg Export RCA]
+			VAR _rebate = [Avg Export Rebate %]
+			RETURN
+			    IF(_rca > 1, _rca * (1 + _rebate), BLANK())
+		formatString: 0.00
+		displayFolder: Export Opportunities
+		lineageTag: 14bfbcff-e347-4a25-8f01-26a52c8ed946
+
+	measure 'Selected Year Label' = IF(HASONEVALUE(Dim_Date[Year]), SELECTEDVALUE(Dim_Date[Year]),"2021 - 2025" )
+		displayFolder: Helpers
+		lineageTag: 838b431e-9f36-42e3-80fe-ea210e70be77
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'products Count' = DISTINCTCOUNT(Dim_Industrial_Opportunity[Product_ID])
+		formatString: #,0
+		displayFolder: Helpers
+		lineageTag: 605483c1-7cea-4acc-93b6-66675a1f0be1
+
+	measure 'Transactions Count' = COUNTROWS(Fact_Trade_Transactions)
+		formatString: #,0
+		displayFolder: Partners & Ports
+		lineageTag: 6209cb66-a1ae-49bc-b773-4d2081e6ea2d
+
+	measure 'Total Quantity' = SUM(Fact_Trade_Transactions[Quantity])
+		formatString: #,0
+		displayFolder: Partners & Ports
+		lineageTag: 69f70dad-9e6f-4267-ac4b-3b0ca19f0a38
+
+	measure 'Avg Unit Price USD' = DIVIDE( SUM(Fact_Trade_Transactions[Total Value USD]), SUM(Fact_Trade_Transactions[Quantity]) )
+		formatString: \$#,0.00;-\$#,0.00;\$#,0.00
+		displayFolder: Partners & Ports
+		lineageTag: 8066647d-a7f3-499f-a054-dd1b23c37261
+
+	measure 'Avg Transaction Value USD' = DIVIDE(SUM(Fact_Trade_Transactions[Total Value USD]), [Transactions Count])
+		formatString: \$#,0;-\$#,0;\$#,0
+		displayFolder: Partners & Ports
+		lineageTag: d1332f2b-650d-43bc-95a1-ae164ad7729c
+
+	measure 'Imports CAGR 2021-2025' = VAR _first = CALCULATE([Total Imports USD], Dim_Date[Year] = 2021) VAR _last  = CALCULATE([Total Imports USD], Dim_Date[Year] = 2025) RETURN  IF(_first > 0 && _last > 0, DIVIDE(_last, _first) ^ (1 / 4) - 1)
+		formatString: 0.0%
+		displayFolder: Partners & Ports
+		lineageTag: e131c354-4763-434c-a9ab-a5ccf883db23
+
+	measure 'Imports YTD' = TOTALYTD([Total Imports USD], Dim_Date[Date])
+		formatString: \$#,0;-\$#,0;\$#,0
+		displayFolder: Partners & Ports
+		lineageTag: 742a4d43-5f0b-4fd3-b28a-4ea9d97aaacb
+
+	measure 'Q1+Q4 Share of Trade %' = DIVIDE( CALCULATE([Total Trade Volume], Dim_Date[Quarter] IN {1, 4}), [Total Trade Volume] )
+		formatString: 0.0%
+		displayFolder: Partners & Ports
+		lineageTag: 6c1eb8c9-fd27-499b-ae3f-4edda30d60e9
+
+	measure 'Country Share of Imports %' = DIVIDE( [Total Imports USD],CALCULATE([Total Imports USD], ALL(Dim_Countries)) )
+		formatString: 0.0%
+		displayFolder: Partners & Ports
+		lineageTag: 15cd5d01-0389-4cb9-ab28-913925786d14
+
+	measure 'Top Import Partner' = MAXX(TOPN(1, VALUES(Dim_Countries[Partner Country]), [Total Imports USD]), Dim_Countries[Partner Country] )
+		displayFolder: Partners & Ports
+		lineageTag: 2cd140ed-8dce-4b85-939e-7faf15bc00c9
+
+	measure 'Top Export Destination' = MAXX(TOPN(1, VALUES(Dim_Countries[Partner Country]), [Total Exports USD]),  Dim_Countries[Partner Country] )
+		displayFolder: Partners & Ports
+		lineageTag: c282ab2c-89fa-4f20-9b68-effcb7bebcf1
+
+	measure 'Preferential Agreement Imports USD' = CALCULATE(    [Total Imports USD],    Dim_Countries[Trade Agreement] <> "Standard WTO" )
+		formatString: \$#,0;-\$#,0;\$#,0
+		displayFolder: Partners & Ports
+		lineageTag: 9d6c3aa4-211d-4859-99a0-538ee6eea95c
+
+	measure 'Estimated Tariff Revenue USD' = SUMX( FILTER(Fact_Trade_Transactions, Fact_Trade_Transactions[Trade Flow] = "Import"), Fact_Trade_Transactions[Total Value USD]* RELATED(Dim_Countries[Tariff Rate Pct]) / 100 )
+		formatString: \$#,0;-\$#,0;\$#,0
+		displayFolder: Partners & Ports
+		lineageTag: 30a3da0b-f448-4f26-8961-496cde78d8c9
+
+	measure 'Port Share %' = DIVIDE( [Total Trade Volume], CALCULATE([Total Trade Volume], ALL(Dim_Ports)) )
+		formatString: 0.0%
+		displayFolder: Partners & Ports
+		lineageTag: 415b91fa-302c-4e3a-ba43-1ad28476cb04
+
+	measure 'Local Raw Material Imports USD' = CALCULATE( [Total Imports USD], Dim_Products[Local Raw Material] = "Yes" )
+		formatString: \$#,0;-\$#,0;\$#,0
+		displayFolder: Partners & Ports
+		lineageTag: 62eb3a99-d8e7-4772-ab62-06a9ba453e9a
+
+	measure 'High Localization Priority Imports USD' = CALCULATE( [Total Imports USD], Dim_Products[Localization Priority] = "High Priority" )
+		formatString: \$#,0;-\$#,0;\$#,0
+		displayFolder: Partners & Ports
+		lineageTag: 6df3c447-a9a4-4ad8-b91d-c6c07d576064
+
+	measure 'Import-Heavy Products' = CALCULATE(  DISTINCTCOUNT(Dim_Products[Product_ID]),  Dim_Products[Commodity Trade Class] = "Import-Heavy" )
+		formatString: #,0
+		displayFolder: Partners & Ports
+		lineageTag: c21fd9bd-6e4e-4c55-9a27-4ea8a26cad51
+
+	measure 'Strategic Imports Share %' = DIVIDE( CALCULATE([Total Imports USD], Dim_Products[Product Essentiality] = "Strategic / Essential"), [Total Imports USD] )
+		formatString: 0.0%
+		displayFolder: Partners & Ports
+		lineageTag: 59a44a9e-a22c-4c0b-97f6-780e202c4cce
+
+	measure 'Export Market Share of Partner Demand %' =
+			
+			VAR _pairs =
+			    ADDCOLUMNS(
+			        SUMMARIZE(
+			            FILTER(Fact_Trade_Transactions, Fact_Trade_Transactions[Trade Flow] = "Export"),
+			            Dim_Countries[Country_ID],
+			            Dim_Products[Product_ID]
+			        ),
+			        "@demand",
+			        CALCULATE(
+			            AVERAGE(Fact_Trade_Transactions[Partner Global Demand USD]),
+			            Fact_Trade_Transactions[Trade Flow] = "Export"
+			        )
+			    )
+			VAR _demand = SUMX(_pairs, [@demand])
+			VAR _years = DISTINCTCOUNT(Dim_Date[Year])
+			RETURN
+			    DIVIDE(DIVIDE([Total Exports USD], _years), _demand)
+		formatString: 0.0%
+		displayFolder: Partners & Ports
+		lineageTag: 3ef75ce3-1db0-4380-9133-e0b5cf2341a2
+
+	measure 'Imports per Job (M USD)' = DIVIDE([Annual Import Baseline (M USD)], [Total New Jobs])
+		formatString: #,0.00
+		displayFolder: Partners & Ports
+		lineageTag: 159e10b8-468c-491f-b8cd-ec88093e93e9
+
+	measure 'Trade Balance PY' = CALCULATE([Trade Balance], SAMEPERIODLASTYEAR(Dim_Date[Date]))
+		formatString: \$#,0;-\$#,0;\$#,0
+		isHidden
+		displayFolder: Comparisons
+		lineageTag: 4ab7a802-e0b0-49e3-87e0-ce05e5d093d5
+
+	measure 'Trade Balance YoY Change' = [Trade Balance] - [Trade Balance PY]
+		formatString: \$#,0;-\$#,0;\$#,0
+		displayFolder: Comparisons
+		lineageTag: 8f7dca91-e099-4a2d-8642-e973c5f5c14e
+
+	measure 'Exports CAGR 2021-2025' =
+			
+			VAR _first = CALCULATE([Total Exports USD], Dim_Date[Year] = 2021)
+			VAR _last  = CALCULATE([Total Exports USD], Dim_Date[Year] = 2025)
+			RETURN
+			    IF(_first > 0 && _last > 0, DIVIDE(_last, _first) ^ (1 / 4) - 1)
+		formatString: 0.0%
+		displayFolder: Partners & Ports
+		lineageTag: ca31c05f-e4e7-474e-8489-95006a40a27b
+
+	measure 'Imports QoQ %' =
+			
+			VAR _prev =
+			    CALCULATE([Total Imports USD], DATEADD(Dim_Date[Date], -1, QUARTER))
+			RETURN
+			    DIVIDE([Total Imports USD] - _prev, _prev)
+		formatString: 0.0%
+		displayFolder: Comparisons
+		lineageTag: c9177a12-04e5-4d20-b060-ce226a921f60
+
+	measure 'Priority Score' =
+			
+			VAR _score = AVERAGE(Dim_Industrial_Opportunity[Import Substitution Score])
+			VAR _gap   = AVERAGE(Dim_Industrial_Opportunity[Local Capacity Gap Pct])
+			VAR _maxSav =
+			    CALCULATE(
+			        MAX(Dim_Industrial_Opportunity[Target Annual FX Savings M USD]),
+			        ALL(Dim_Industrial_Opportunity)
+			    )
+			VAR _sav =
+			    DIVIDE(
+			        AVERAGE(Dim_Industrial_Opportunity[Target Annual FX Savings M USD]),
+			        _maxSav
+			    ) * 100
+			RETURN
+			    0.4 * _sav + 0.3 * _gap + 0.3 * _score
+		formatString: 0.0
+		displayFolder: Opportunity Priority
+		lineageTag: c26ccf6b-96ec-4ce9-9cff-71bfa0dd93ee
+
+	measure 'Savings per Factory (M USD)' = DIVIDE([Target FX Savings (M USD)], [Total Required Factories])
+		formatString: #,0.0
+		displayFolder: Opportunity Priority
+		lineageTag: 3fad0e27-ef00-4b8f-bb68-a15d1aa3cae7
+
+	measure 'Cumulative Savings %' =
+			
+			VAR _cur = [Target FX Savings (M USD)]
+			VAR _all = ALL(Dim_Products[Product Name])
+			VAR _cum =
+			    SUMX(
+			        FILTER(_all, [Target FX Savings (M USD)] >= _cur),
+			        [Target FX Savings (M USD)]
+			    )
+			VAR _total = SUMX(_all, [Target FX Savings (M USD)])
+			RETURN
+			    DIVIDE(_cum, _total)
+		formatString: 0.0%
+		displayFolder: Opportunity Priority
+		lineageTag: 1a9fd0b5-71be-4d41-b746-75e0cde69be4
+
+	measure 'Import Share of Trade %' = DIVIDE([Total Imports USD], [Total Trade Volume])
+		formatString: 0.0%
+		displayFolder: Data Quality
+		lineageTag: 27d0418f-c6b8-4c24-a9d4-4922fd4e3d1a
+
+	measure 'Export Share of Trade %' = DIVIDE([Total Exports USD], [Total Trade Volume])
+		formatString: 0.0%
+		displayFolder: Data Quality
+		lineageTag: 7d24f435-0873-4b16-8c69-a067df16d7fd
+
+	measure 'Port Share by Transactions %' =
+			
+			DIVIDE(
+			    [Transactions Count],
+			    CALCULATE([Transactions Count], ALL(Dim_Ports))
+			)
+		formatString: 0.0%
+		displayFolder: Partners & Ports
+		lineageTag: cea3f012-6e6f-4da8-a2e0-429519314efc
+
+	measure 'Value Calc Error Rows' =
+			
+			COUNTROWS(
+			    FILTER(
+			        Fact_Trade_Transactions,
+			        ABS(
+			            Fact_Trade_Transactions[Total Value USD]
+			            - Fact_Trade_Transactions[Quantity] * Fact_Trade_Transactions[Unit Price USD]
+			        ) > 1
+			    )
+			) + 0
+		formatString: #,0
+		displayFolder: Data Quality
+		lineageTag: ae783dbd-aace-43b8-a6e8-1bf5b5e2d0f8
+
+	measure 'Anomaly Products' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(Dim_Products[Product_ID]),
+			    Dim_Products[Commodity Trade Class] = "Anomaly / Needs Investigation"
+			)
+		formatString: #,0
+		displayFolder: Partners & Ports
+		lineageTag: 0db02d58-d37e-4e46-a8aa-09b250750800
+
+	measure 'Country Title' = "Country Profile: " & SELECTEDVALUE(Dim_Countries[Partner Country], "All Countries")
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: f56e68ad-8e8b-4bbe-9bf8-526b23a8a07f
+
+	measure 'Product Title' = "Product Profile: " & SELECTEDVALUE(Dim_Products[Product Name], "All Products")
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: 5db85b98-7997-42b4-8757-9419196788bc
+
+	measure 'Imports YoY Label' =
+			
+			VAR y = MAX(Dim_Date[Year])
+			VAR v = CALCULATE([Imports YoY %], Dim_Date[Year] = y)
+			RETURN IF(ISBLANK(v), "-", IF(v >= 0, "▲ ", "▼ ") & FORMAT(ABS(v), "0.0%") & " (" & y & " vs " & (y - 1) & ")")
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: a4530c4d-33db-4d5d-8f34-1be433647b40
+
+	measure 'Exports YoY Label' =
+			
+			VAR y = MAX(Dim_Date[Year])
+			VAR v = CALCULATE([Exports YoY %], Dim_Date[Year] = y)
+			RETURN IF(ISBLANK(v), "-", IF(v >= 0, "▲ ", "▼ ") & FORMAT(ABS(v), "0.0%") & " (" & y & " vs " & (y - 1) & ")")
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: 7fdc3618-6d2e-4d65-99cb-39b5696c5ba6
+
+	measure 'Trade Position' = IF([Trade Balance] < 0, "Trade Deficit", "Trade Surplus")
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: 27654ca3-ad37-400f-b391-0de39f060ba5
+
+	measure 'Trade Balance Color' = IF([Trade Balance] < 0, "#C0392B", "#1E8449")
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: 4280fba7-f7ee-4edd-9954-f6be06e9fc97
+
+	measure 'Advantage Share Label' =
+			
+			FORMAT(DIVIDE([Export Advantage Products], [products Count]), "0.0%") & " of " & [products Count] & " products"
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: 5d9faf20-207f-4787-a14b-5328b17e3f1d
+
+	measure 'Rebate Rate Label' =
+			
+			FORMAT(DIVIDE([Export Rebate Value USD], [Total Exports USD]), "0.0%") & " of export value (est.)"
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: f7319027-61f7-47bd-842c-7172b04fdb37
+
+	measure 'Rebate Color' = IF([Avg Export Rebate %] >= 0.05, "#1E8449", "#B9770E")
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: 7ad716e8-416e-4e43-9bcf-98d5642e7ed2
+
+	measure 'Savings Label' =
+			
+			FORMAT([Savings as % of Imports], "0.0%") & " of annual import baseline"
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: a903d114-52d6-41de-9b82-1b9dacf49b71
+
+	measure 'Payback Label' =
+			
+			"Payback: " & FORMAT([Payback Period (Years)], "0.0") & " yrs"
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: acc89f13-4967-41d3-b367-fd86e51cdb76
+
+	measure 'Jobs Label' =
+			
+			FORMAT([Jobs per M USD Savings], "0.0") & " jobs per $M saved"
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: 1455c151-d1c6-4b62-ad0d-6f22bbb10d50
+
+	measure 'Factory Label' =
+			
+			"$" & IF([Savings per Factory (M USD)] >= 1000, FORMAT([Savings per Factory (M USD)] / 1000, "#,0.0") & "bn", FORMAT([Savings per Factory (M USD)], "#,0.0") & "M") & " saved per factory"
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: 8d627f34-4b34-4c79-a9d7-102161448696
+
+	measure 'Top Export Destination Label' =
+			
+			"Share: " & FORMAT(
+			    DIVIDE(
+			        CALCULATE([Total Exports USD], TOPN(1, VALUES(Dim_Countries[Partner Country]), [Total Exports USD])),
+			        [Total Exports USD]),
+			    "0.0%")
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: fe981f48-7d3a-48f2-9933-be4c22b0e1ba
+
+	measure 'Growth Gap :' =
+			
+			IF([Imports CAGR 2021-2025] > [Exports CAGR 2021-2025],
+			   "Imports growing faster than exports",
+			   "Exports growing faster than imports")
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: 4ffc75f3-e70f-4d43-bd98-d6ea1ccf5288
+
+	measure 'Growth Gap Color' =
+			
+			IF([Imports CAGR 2021-2025] > [Exports CAGR 2021-2025], "#C0392B", "#1E8449")
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: 2ff42c2a-14a4-42c2-96f4-be8953f2d574
+
+	measure 'Priority Label' = "out of " & [products Count] & " products"
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: b4d5ec63-678f-4542-bf49-5734a26133d4
+
+	measure 'Top Import Partner Label' =
+			
+			"Share: " & FORMAT(
+			    CALCULATE([Country Share of Imports %], TOPN(1, VALUES(Dim_Countries[Partner Country]), [Total Imports USD])),
+			    "0.0%")
+		isHidden
+		displayFolder: Trade Flow
+		lineageTag: 9cd00601-13a3-4358-8c30-c385d1107d99
+
+	measure 'WTO Standard Imports %' =
+			
+			DIVIDE(
+			    CALCULATE([Total Imports USD], Dim_Countries[Trade Agreement] = "Standard WTO"),
+			    [Total Imports USD]
+			)
+		formatString: 0.0%
+		displayFolder: Partners & Ports
+		lineageTag: c5236c19-ef2d-4f62-9178-aa4f4e979e82
+
+	measure 'EU Partnership Imports %' =
+			
+			DIVIDE(
+			    CALCULATE([Total Imports USD], Dim_Countries[Trade Agreement] = "EU-Egypt Partnership"),
+			    [Total Imports USD]
+			)
+		formatString: 0.0%
+		displayFolder: Partners & Ports
+		lineageTag: f9a61fbc-5bcf-454e-bb0b-3a595bd800ab
+
+	measure 'Estimated Tariff Revenue (M USD)' =
+			
+			DIVIDE([Estimated Tariff Revenue USD], 1000000)
+		formatString: #,0.0
+		displayFolder: Partners & Ports
+		lineageTag: c136be4b-7cf6-4d73-b5d4-ea15976657d7
+
+	measure 'Golden License Savings %' =
+			
+			DIVIDE([Golden License Savings (M USD)], [Target FX Savings (M USD)])
+		formatString: 0.0%
+		displayFolder: Import Substitution
+		lineageTag: ba786b2f-9c38-4c3c-8990-90ce99311e8f
+
+	measure 'Exported Raw & Intermediate (M USD)' =
+			
+			CALCULATE(
+			    [Total Exports (M USD)],
+			    Dim_Products[Supply Chain Stage] IN {"Raw Material", "Intermediate Good"}
+			)
+		formatString: #,0.0
+		displayFolder: Import Substitution
+		lineageTag: 265c4fcb-4176-4132-8905-dcc43eb5a001
+
+	measure 'Imported Finished Goods (M USD)' =
+			
+			CALCULATE(
+			    [Total Imports (M USD)],
+			    Dim_Products[Supply Chain Stage] = "Finished Consumer Good"
+			)
+		formatString: #,0.0
+		displayFolder: Import Substitution
+		lineageTag: 6d8f9a29-c10a-407e-966e-f2103aec6adb
+
+	measure 'Products (Count)' =
+			
+			COUNTROWS(Dim_Products)
+		formatString: #,0
+		displayFolder: Partners & Ports
+		lineageTag: 56aa02da-6c3f-484e-84ae-d8a7abc25ac6
+
+	measure 'Partner Market Size Index' =
+			
+			DIVIDE(AVERAGE(Fact_Trade_Transactions[Partner Global Demand USD]), 1000000)
+		formatString: #,0.0
+		displayFolder: Partners & Ports
+		lineageTag: 586659d9-8f13-46db-9a78-4f1a003477e4
+
+	measure 'Target FX Savings USD' = [Target FX Savings (M USD)] * 1000000
+		formatString: \$#,0;-\$#,0;\$#,0
+		displayFolder: Import Substitution
+		lineageTag: 92ee5e47-0eab-46b8-b28c-4ae370d6de91
+
+	measure 'Total Required CapEx USD' = [Total Required CapEx (M USD)] * 1000000
+		formatString: \$#,0;-\$#,0;\$#,0
+		displayFolder: Investment & Jobs
+		lineageTag: 9100d836-3dd3-47ca-b9e7-b76f1e3fdbdf
+
+	partition Measures_Table = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

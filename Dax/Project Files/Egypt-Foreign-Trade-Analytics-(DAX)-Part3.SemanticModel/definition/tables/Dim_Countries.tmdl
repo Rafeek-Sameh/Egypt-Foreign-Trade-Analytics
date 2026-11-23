@@ -1,0 +1,60 @@
+table Dim_Countries
+	lineageTag: c2fc1250-8ba4-435c-9289-7dd8cdf87b4a
+
+	column Country_ID
+		dataType: string
+		isHidden
+		lineageTag: 707b8dc3-2ab6-40f2-8416-6003fbf0c524
+		summarizeBy: none
+		sourceColumn: Country_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Partner Country'
+		dataType: string
+		lineageTag: 24d1d725-062f-42cb-a694-f15c67d943d5
+		summarizeBy: none
+		sourceColumn: Partner_Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 4cb63fb2-6c07-41cc-9686-b1043af20234
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Trade Agreement'
+		dataType: string
+		lineageTag: f9e543fd-41ad-475c-858c-3ccdaaa32a5d
+		summarizeBy: none
+		sourceColumn: Trade_Agreement
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tariff Rate Pct'
+		dataType: int64
+		formatString: 0
+		lineageTag: 77e12070-6ad6-430b-a174-7563b20dc5be
+		summarizeBy: none
+		sourceColumn: Tariff_Rate_Pct
+
+		annotation SummarizationSetBy = User
+
+	partition Dim_Countries = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\Career\Data Analysis\DEPI\Team Project\Tables\Dim_Countries.xlsx"), null, true),
+				    Dim_Countries_Sheet = Source{[Item="Dim_Countries",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Dim_Countries_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Country_ID", type text}, {"Partner_Country", type text}, {"Region", type text}, {"Trade_Agreement", type text}, {"Tariff_Rate_Pct", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

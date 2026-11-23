@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "60a0df0cec02170200cc",
+  "displayName": "Localization Plan",
+  "displayOption": "FitToPage",
+  "height": 2160,
+  "width": 3840
+}

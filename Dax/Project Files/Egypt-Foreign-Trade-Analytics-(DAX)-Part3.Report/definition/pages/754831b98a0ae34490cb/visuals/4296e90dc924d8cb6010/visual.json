@@ -1,0 +1,44 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "4296e90dc924d8cb6010",
+  "position": {
+    "x": 1459.7333080244862,
+    "y": 231.30261472025813,
+    "z": 12000,
+    "height": 112.73572818298295,
+    "width": 460.66150998908552,
+    "tabOrder": 12000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Dim_Industrial_Opportunity"
+                        }
+                      },
+                      "Property": "Golden License Eligible"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(Dim_Industrial_Opportunity.Golden License Eligible)",
+              "nativeQueryRef": "First Golden License Eligible",
+              "displayName": "Golden License Eligible"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

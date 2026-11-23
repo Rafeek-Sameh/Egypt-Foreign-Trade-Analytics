@@ -1,0 +1,27 @@
+relationship ecaddc45-876f-4f08-bca4-6d07c253354f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Fact_Trade_Transactions.Date
+	toColumn: LocalDateTable_5f145133-5ae0-44cc-a21e-7748c5d5a9d1.Date
+
+relationship AutoDetected_c9bc6e5a-da32-4cb5-933e-238c532a906a
+	fromColumn: Fact_Trade_Transactions.Date_Key
+	toColumn: Dim_Date.Date_Key
+
+relationship AutoDetected_08659969-9cd0-459d-bd6d-d3697523fce5
+	fromColumn: Fact_Trade_Transactions.Product_ID
+	toColumn: Dim_Products.Product_ID
+
+relationship AutoDetected_126aaa87-b66e-4e25-ac64-8a144a665f7c
+	fromColumn: Fact_Trade_Transactions.Country_ID
+	toColumn: Dim_Countries.Country_ID
+
+relationship AutoDetected_6733813a-ecb3-4c51-aacb-d3887ffd290a
+	fromColumn: Fact_Trade_Transactions.Port_ID
+	toColumn: Dim_Ports.Port_ID
+
+relationship 3a2e7df7-bcdb-d1e1-682c-285d1c914b75
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Dim_Products.Product_ID
+	toColumn: Dim_Industrial_Opportunity.Product_ID
+

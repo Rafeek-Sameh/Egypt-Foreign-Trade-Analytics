@@ -1,0 +1,11 @@
+EVALUATE
+ROW(
+    "Imports_M", [Total Imports (M USD)],
+    "Exports_M", [Total Exports (M USD)],
+    "Exports_USD", [Total Exports USD],
+    "Rebate_M", DIVIDE([Export Rebate Value USD], 1000000),
+    "Savings_M", [Target FX Savings (M USD)],
+    "CapEx_M", [Total Required CapEx (M USD)],
+    "Jobs", [Total New Jobs],
+    "Factories", [Total Required Factories]
+)
